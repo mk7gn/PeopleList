@@ -5,7 +5,7 @@ import { PeopleListModule } from './modules/people-list/people-list.module'
 import { VehicleListModule } from './modules/vehicle-list/vehicle-list.module'
 import { HomeModule } from './modules/home/home.module'
 import { AngularFireModule } from 'angularfire2'
-import { AngularFireDatabaseModule } from 'angularfire2/database'
+import { AngularFirestoreModule } from 'angularfire2/firestore'
 
 import { AppComponent } from './app.component'
 import {appRoutes} from './app.routes'
@@ -41,7 +41,7 @@ const environment = {
     VehicleListModule,
     HomeModule,
     AngularFireModule.initializeApp(environment.firebase, 'people-list'),
-    AngularFireDatabaseModule
+    AngularFirestoreModule
   ],
   providers: [PeopleService, VehicleService],
   bootstrap: [AppComponent]

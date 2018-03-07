@@ -4,21 +4,19 @@ import { Observable } from 'rxjs/Observable'
 import { catchError, map, tap } from 'rxjs/operators'
 import { of } from 'rxjs/observable/of'
 import { Person } from './people.model'
-import { AngularFireDatabase, AngularFireList} from 'angularfire2/database'
+import { AngularFirestore} from 'angularfire2/firestore'
 
 @Injectable()
 export class PeopleService {
   private peopleUrl = 'api/people'
 
   constructor(
-    private db: AngularFireDatabase,
+    private db: AngularFirestore,
   ) { }
 
     /** GET people from the server */
-    getPeople (): AngularFireList<Person[]> {
-      const data = this.db
-      debugger
-      return this.db.list('/people')
+    getPeople (): Observable<Person[]> {
+      return this.db.collection('/people').valueChanges()
     }
 
     /**

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { PeopleService } from '../../api/people.service'
 import { Person } from '../../api/people.model'
-import { AngularFireList} from 'angularfire2/database'
+import { AngularFirestoreCollection} from 'angularfire2/firestore'
 
 @Component({
   selector: 'app-people-list',
@@ -9,7 +9,7 @@ import { AngularFireList} from 'angularfire2/database'
   styleUrls: ['./people-list.component.css']
 })
 export class PeopleListComponent implements OnInit {
-  public people: AngularFireList<Person[]>
+  public people: AngularFirestoreCollection<Person[]>
 
   constructor(
     private peopleService: PeopleService
