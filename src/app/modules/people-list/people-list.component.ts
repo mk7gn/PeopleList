@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
+import { PeopleService } from '../../api/people.service'
+import { Person } from '../../api/people.model'
+import { AngularFireList} from 'angularfire2/database'
 
 @Component({
   selector: 'app-people-list',
@@ -6,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./people-list.component.css']
 })
 export class PeopleListComponent implements OnInit {
+  public people: AngularFireList<Person[]>
 
-  constructor() { }
+  constructor(
+    private peopleService: PeopleService
+  ) { }
 
   ngOnInit() {
+    this.people = this.peopleService.getPeople()
+    debugger
   }
 
 }

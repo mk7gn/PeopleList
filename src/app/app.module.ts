@@ -4,12 +4,27 @@ import { NgModule } from '@angular/core'
 import { PeopleListModule } from './modules/people-list/people-list.module'
 import { VehicleListModule } from './modules/vehicle-list/vehicle-list.module'
 import { HomeModule } from './modules/home/home.module'
+import { AngularFireModule } from 'angularfire2'
+import { AngularFireDatabaseModule } from 'angularfire2/database'
 
 import { AppComponent } from './app.component'
 import {appRoutes} from './app.routes'
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component'
 
+import { PeopleService } from './api/people.service'
+import { VehicleService } from './api/vehicle.service'
 
+const environment = {
+  production: true,
+  firebase: {
+    apiKey: 'AIzaSyDcGxaA790ZjQkjY3xrUHvaDHnTrCL2dTc',
+    authDomain: 'people-list-571c4.firebaseapp.com',
+    databaseURL: 'https://people-list-571c4.firebaseio.com',
+    projectId: 'people-list-571c4',
+    storageBucket: '',
+    messagingSenderId: '824480851995'
+  }
+}
 
 @NgModule({
   declarations: [
@@ -24,9 +39,11 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     BrowserModule,
     PeopleListModule,
     VehicleListModule,
-    HomeModule
+    HomeModule,
+    AngularFireModule.initializeApp(environment.firebase, 'people-list'),
+    AngularFireDatabaseModule
   ],
-  providers: [],
+  providers: [PeopleService, VehicleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

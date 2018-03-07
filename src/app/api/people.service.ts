@@ -4,22 +4,21 @@ import { Observable } from 'rxjs/Observable'
 import { catchError, map, tap } from 'rxjs/operators'
 import { of } from 'rxjs/observable/of'
 import { Person } from './people.model'
+import { AngularFireDatabase, AngularFireList} from 'angularfire2/database'
 
 @Injectable()
 export class PeopleService {
   private peopleUrl = 'api/people'
 
   constructor(
-    private http: HttpClient,
+    private db: AngularFireDatabase,
   ) { }
 
     /** GET people from the server */
-    getPeople (): Observable<{} | Person[]> {
-      return this.http.get<Person[]>(this.peopleUrl)
-        .pipe(
-          tap(heroes => this.log(`fetched heroes`)),
-          catchError(this.handleError('getHeroes', []))
-        )
+    getPeople (): AngularFireList<Person[]> {
+      const data = this.db
+      debugger
+      return this.db.list('/people')
     }
 
     /**
