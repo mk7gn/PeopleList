@@ -5,8 +5,6 @@ import { PeopleListModule } from './modules/people-list/people-list.module'
 import { VehicleListModule } from './modules/vehicle-list/vehicle-list.module'
 import { HomeModule } from './modules/home/home.module'
 
-
-
 import { AppComponent } from './app.component'
 import {appRoutes} from './app.routes'
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component'
